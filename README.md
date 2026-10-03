@@ -9,43 +9,41 @@
 </div>
 
 <!-- The container where the greeting will appear -->
+<!-- The container where the greeting will appear -->
 <div id="dynamic-greeting" style="background-color: #0d1117; border: 1px solid #30363d; padding: 15px; border-radius: 6px; font-family: monospace; color: #c9d1d9;">
     <span id="welcome-text">Loading connection details...</span>
-    
 </div>
 
 <script>
     async function showVisitorGreeting() {
         try {
-            // 1. Fetch the user's IP address and rough geographic coordinates
-            const geoResponse = await fetch('https://freeipapi.com/api/v1/json/');
+            // 1. Fetch the user's IP and coordinates using GeoJS (Reliable & CORS-friendly)
+            const geoResponse = await fetch('https://get.geojs.io/v1/ip/geo.json');
             const geoData = await geoResponse.json();
             
-            const ip = geoData.ipAddress;
+            const ip = geoData.ip;
             const lat = geoData.latitude;
             const lon = geoData.longitude;
 
-            // 2. Pass the coordinates to Open-Meteo to get the current temperature
-            // The API uses HTTP GET requests and returns a simple JSON structure
+            // 2. Fetch weather using Open-Meteo
             const weatherResponse = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m`);
             const weatherData = await weatherResponse.json();
             
             const temp = weatherData.current.temperature_2m;
 
-            // 3. Inject the dynamic string into the HTML
+            // 3. Inject the data into the HTML
             document.getElementById('welcome-text').innerHTML = 
                 `> Hey <strong>IP=${ip}</strong>, welcome to my page.<br>` +
                 `> The current temperature near you is around <strong>${temp}°C</strong>.<br>` + 
                 `> Below is more information about me.`;
                 
         } catch (error) {
-            // Fallback in case the user has an ad-blocker that stops API tracking calls
+            // Fallback message if tracking is blocked
             document.getElementById('welcome-text').innerText = "> Welcome to my page. Below is more information about me.";
-            console.error("Could not load dynamic visitor data");
+            console.error("Could not load dynamic visitor data", error);
         }
     }
 
-    // Execute the function when the script loads
     showVisitorGreeting();
 </script>
 <br>
