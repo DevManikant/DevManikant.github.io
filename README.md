@@ -6,19 +6,12 @@
 
 **I build automation solutions that are fast, reliable, and scalable.**
 
-[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge\&logo=github\&logoColor=white)](https://github.com/DevManikant)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge\&logo=linkedin\&logoColor=white)](YOUR_LINKEDIN_URL)
-[![Email](https://img.shields.io/badge/Email-EA4335?style=for-the-badge\&logo=gmail\&logoColor=white)](mailto:YOUR_EMAIL)
-
-<br>
-
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,50:161b22,100:238636&height=120&section=header" width="100%"/>
-
 </div>
 
 <!-- The container where the greeting will appear -->
 <div id="dynamic-greeting" style="background-color: #0d1117; border: 1px solid #30363d; padding: 15px; border-radius: 6px; font-family: monospace; color: #c9d1d9;">
     <span id="welcome-text">Loading connection details...</span>
+    
 </div>
 
 <script>
@@ -55,7 +48,9 @@
     // Execute the function when the script loads
     showVisitorGreeting();
 </script>
+<br>
 
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,50:161b22,100:238636&height=120&section=header" width="100%"/>
 ---
 
 ## 🧑‍💻 About Me
