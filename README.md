@@ -1,61 +1,40 @@
-<div align="center">
-
-# 👋 MANIKANT SHARMA
-
-### `AUTOMATION ENGINEER` · `PYTHON DEVELOPER` · `QA AUTOMATION`
-
-**I build automation solutions that are fast, reliable, and scalable.**
-
-</div>
-
-<!-- The container where the greeting will appear -->
-<!-- The container where the greeting will appear -->
 <style>
-  /* Import a slick coding font from Google Fonts */
   @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap');
   
-  /* Styling for your Title Name */
-  .hero-section { text-align: center; font-family: 'Segoe UI', Tahoma, sans-serif; margin-bottom: 40px; margin-top: 20px; }
-  .hero-title { font-size: 3em; margin: 10px 0; font-weight: 800; color: #ffffff; }
-  .hero-subtitle { font-size: 1.2em; color: #58a6ff; letter-spacing: 2px; font-weight: 600; margin-bottom: 10px; }
-  .hero-desc { font-size: 1.1em; color: #8b949e; }
+  /* Blends perfectly with your chosen Hacker Theme */
+  .hero-section { text-align: center; margin: 40px 0 30px 0; }
+  .hero-title { font-size: 2.5em; margin: 10px 0; font-weight: 700; color: #b5e853; /* Hacker green */ }
+  .hero-subtitle { font-size: 1.2em; color: #ffffff; letter-spacing: 2px; }
   
-  /* Styling for the Terminal Window */
-  .terminal-window {
-    max-width: 750px; margin: 0 auto; background-color: #0d1117; 
-    border: 1px solid #30363d; border-radius: 10px; 
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5); overflow: hidden;
+  /* Rugged CLI Window styling */
+  .hacker-terminal {
+    max-width: 750px; margin: 0 auto 40px auto; background-color: #0f110f; 
+    border: 1px solid #b5e853; border-radius: 2px; 
+    box-shadow: 0 0 10px rgba(181, 232, 83, 0.1); overflow: hidden; text-align: left;
   }
-  .terminal-header { background: #161b22; padding: 12px; display: flex; gap: 8px; border-bottom: 1px solid #30363d; }
-  .dot { width: 12px; height: 12px; border-radius: 50%; }
-  .dot-red { background: #ff5f56; } .dot-yellow { background: #ffbd2e; } .dot-green { background: #27c93f; }
-  
-  .terminal-body { 
-    padding: 25px; font-family: 'Fira Code', monospace; 
-    font-size: 16px; color: #7ee787; line-height: 1.8; text-align: left;
+  .hacker-header { 
+    background: #1a1c1a; padding: 6px 12px; border-bottom: 1px solid #b5e853; 
+    font-family: 'Fira Code', monospace; color: #777; font-size: 12px; 
+  }
+  .hacker-body { 
+    padding: 20px; font-family: 'Fira Code', monospace; 
+    font-size: 15px; color: #b5e853; line-height: 1.6;
   }
   
-  /* Blinking cursor animation */
-  .cursor { display: inline-block; width: 10px; height: 18px; background-color: #7ee787; animation: blink 1s step-end infinite; vertical-align: middle; margin-left: 5px; }
+  .cursor { display: inline-block; width: 10px; height: 16px; background-color: #b5e853; animation: blink 1s step-end infinite; vertical-align: middle; margin-left: 4px;}
   @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-  .highlight { color: #79c0ff; font-weight: 600; }
+  .highlight-white { color: #ffffff; font-weight: 600; }
 </style>
 
-<!-- Clean HTML replacing your broken Markdown -->
 <div class="hero-section">
     <h1 class="hero-title">👋 MANIKANT SHARMA</h1>
-    <div class="hero-subtitle">AUTOMATION ENGINEER &bull; PYTHON DEVELOPER &bull; QA AUTOMATION</div>
-    <div class="hero-desc">I build automation solutions that are fast, reliable, and scalable.</div>
+    <div class="hero-subtitle">AUTOMATION ENGINEER &bull; PYTHON DEVELOPER &bull; QA</div>
 </div>
 
-<!-- The Animated Terminal -->
-<div class="terminal-window">
-    <div class="terminal-header">
-        <div class="dot dot-red"></div>
-        <div class="dot dot-yellow"></div>
-        <div class="dot dot-green"></div>
-    </div>
-    <div class="terminal-body">
+<div class="hacker-terminal">
+    <div class="hacker-header">Administrator: Windows PowerShell</div>
+    <div class="hacker-body">
+        <span style="color: #fff;">PS C:\Automation_Env></span> ./init_session.ps1<br><br>
         <span id="typed-text"></span><span class="cursor"></span>
     </div>
 </div>
@@ -63,43 +42,40 @@
 <script>
     async function executeTerminalSequence() {
         const typedText = document.getElementById('typed-text');
-        typedText.innerHTML = "> Initializing connection sequence...<br>";
+        typedText.innerHTML = "[*] Bypassing execution policy...<br>[*] Initializing remote connection sequence...<br><br>";
         
         try {
-            // Fetch IP and Location
             const geoResponse = await fetch('https://get.geojs.io/v1/ip/geo.json');
             const geoData = await geoResponse.json();
             
-            // Fetch Weather
             const weatherResponse = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${geoData.latitude}&longitude=${geoData.longitude}&current=temperature_2m`);
             const weatherData = await weatherResponse.json();
             
-            // Truncate messy IPv6 addresses for a cleaner terminal look
             let ipDisplay = geoData.ip;
             if(ipDisplay.length > 15) ipDisplay = ipDisplay.substring(0, 15) + '...';
+            
+            let cityDisplay = geoData.city && geoData.city !== 'Unknown' ? geoData.city : 'Remote Node';
 
-            // The lines to type out
             const lines = [
-                `> Connection established from <span class="highlight">IP: ${ipDisplay}</span>`,
-                `> Location verified: <span class="highlight">${geoData.city || 'Unknown'}, ${geoData.country_code || ''}</span>`,
-                `> Local environment temp: <span class="highlight">${weatherData.current.temperature_2m}°C</span>`,
-                `> Status: <span style="color: #ffbd2e;">Awaiting further commands...</span>`
+                `[+] Handshake successful. Client IP: <span class="highlight-white">${ipDisplay}</span>`,
+                `[+] Node coordinates verified: <span class="highlight-white">${cityDisplay}, ${geoData.country_code || ''}</span>`,
+                `[+] Environment temp check: <span class="highlight-white">${weatherData.current.temperature_2m}°C</span>`,
+                `[+] VNC Server ready. Awaiting automation scripts...`
             ];
 
-            typedText.innerHTML = ""; // Clear initialization text
+            // Brief pause before outputting data
+            await new Promise(r => setTimeout(r, 800));
             
-            // Artificial delay to simulate a script running line by line
             for (let i = 0; i < lines.length; i++) {
                 typedText.innerHTML += lines[i] + "<br>";
-                await new Promise(r => setTimeout(r, 700)); // 700ms delay between lines
+                await new Promise(r => setTimeout(r, 600)); 
             }
             
         } catch (error) {
-            typedText.innerHTML = "> Execution failed. Loading local fallback...<br>> Welcome to my portfolio.";
+            typedText.innerHTML += "[-] Execution failed. Loading static fallback.<br>[+] Welcome to my portfolio.";
         }
     }
 
-    // Run sequence on load
     executeTerminalSequence();
 </script>
 <br>
