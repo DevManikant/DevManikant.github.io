@@ -10,41 +10,97 @@
 
 <!-- The container where the greeting will appear -->
 <!-- The container where the greeting will appear -->
-<div id="dynamic-greeting" style="background-color: #0d1117; border: 1px solid #30363d; padding: 15px; border-radius: 6px; font-family: monospace; color: #c9d1d9;">
-    <span id="welcome-text">Loading connection details...</span>
+<style>
+  /* Import a slick coding font from Google Fonts */
+  @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap');
+  
+  /* Styling for your Title Name */
+  .hero-section { text-align: center; font-family: 'Segoe UI', Tahoma, sans-serif; margin-bottom: 40px; margin-top: 20px; }
+  .hero-title { font-size: 3em; margin: 10px 0; font-weight: 800; color: #ffffff; }
+  .hero-subtitle { font-size: 1.2em; color: #58a6ff; letter-spacing: 2px; font-weight: 600; margin-bottom: 10px; }
+  .hero-desc { font-size: 1.1em; color: #8b949e; }
+  
+  /* Styling for the Terminal Window */
+  .terminal-window {
+    max-width: 750px; margin: 0 auto; background-color: #0d1117; 
+    border: 1px solid #30363d; border-radius: 10px; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5); overflow: hidden;
+  }
+  .terminal-header { background: #161b22; padding: 12px; display: flex; gap: 8px; border-bottom: 1px solid #30363d; }
+  .dot { width: 12px; height: 12px; border-radius: 50%; }
+  .dot-red { background: #ff5f56; } .dot-yellow { background: #ffbd2e; } .dot-green { background: #27c93f; }
+  
+  .terminal-body { 
+    padding: 25px; font-family: 'Fira Code', monospace; 
+    font-size: 16px; color: #7ee787; line-height: 1.8; text-align: left;
+  }
+  
+  /* Blinking cursor animation */
+  .cursor { display: inline-block; width: 10px; height: 18px; background-color: #7ee787; animation: blink 1s step-end infinite; vertical-align: middle; margin-left: 5px; }
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+  .highlight { color: #79c0ff; font-weight: 600; }
+</style>
+
+<!-- Clean HTML replacing your broken Markdown -->
+<div class="hero-section">
+    <h1 class="hero-title">👋 MANIKANT SHARMA</h1>
+    <div class="hero-subtitle">AUTOMATION ENGINEER &bull; PYTHON DEVELOPER &bull; QA AUTOMATION</div>
+    <div class="hero-desc">I build automation solutions that are fast, reliable, and scalable.</div>
+</div>
+
+<!-- The Animated Terminal -->
+<div class="terminal-window">
+    <div class="terminal-header">
+        <div class="dot dot-red"></div>
+        <div class="dot dot-yellow"></div>
+        <div class="dot dot-green"></div>
+    </div>
+    <div class="terminal-body">
+        <span id="typed-text"></span><span class="cursor"></span>
+    </div>
 </div>
 
 <script>
-    async function showVisitorGreeting() {
+    async function executeTerminalSequence() {
+        const typedText = document.getElementById('typed-text');
+        typedText.innerHTML = "> Initializing connection sequence...<br>";
+        
         try {
-            // 1. Fetch the user's IP and coordinates using GeoJS (Reliable & CORS-friendly)
+            // Fetch IP and Location
             const geoResponse = await fetch('https://get.geojs.io/v1/ip/geo.json');
             const geoData = await geoResponse.json();
             
-            const ip = geoData.ip;
-            const lat = geoData.latitude;
-            const lon = geoData.longitude;
-
-            // 2. Fetch weather using Open-Meteo
-            const weatherResponse = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m`);
+            // Fetch Weather
+            const weatherResponse = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${geoData.latitude}&longitude=${geoData.longitude}&current=temperature_2m`);
             const weatherData = await weatherResponse.json();
             
-            const temp = weatherData.current.temperature_2m;
+            // Truncate messy IPv6 addresses for a cleaner terminal look
+            let ipDisplay = geoData.ip;
+            if(ipDisplay.length > 15) ipDisplay = ipDisplay.substring(0, 15) + '...';
 
-            // 3. Inject the data into the HTML
-            document.getElementById('welcome-text').innerHTML = 
-                `> Hey <strong>IP=${ip}</strong>, welcome to my page.<br>` +
-                `> The current temperature near you is around <strong>${temp}°C</strong>.<br>` + 
-                `> Below is more information about me.`;
-                
+            // The lines to type out
+            const lines = [
+                `> Connection established from <span class="highlight">IP: ${ipDisplay}</span>`,
+                `> Location verified: <span class="highlight">${geoData.city || 'Unknown'}, ${geoData.country_code || ''}</span>`,
+                `> Local environment temp: <span class="highlight">${weatherData.current.temperature_2m}°C</span>`,
+                `> Status: <span style="color: #ffbd2e;">Awaiting further commands...</span>`
+            ];
+
+            typedText.innerHTML = ""; // Clear initialization text
+            
+            // Artificial delay to simulate a script running line by line
+            for (let i = 0; i < lines.length; i++) {
+                typedText.innerHTML += lines[i] + "<br>";
+                await new Promise(r => setTimeout(r, 700)); // 700ms delay between lines
+            }
+            
         } catch (error) {
-            // Fallback message if tracking is blocked
-            document.getElementById('welcome-text').innerText = "> Welcome to my page. Below is more information about me.";
-            console.error("Could not load dynamic visitor data", error);
+            typedText.innerHTML = "> Execution failed. Loading local fallback...<br>> Welcome to my portfolio.";
         }
     }
 
-    showVisitorGreeting();
+    // Run sequence on load
+    executeTerminalSequence();
 </script>
 <br>
 
