@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manikant Sharma | Automation Engineer</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap');
+        
+        /* Global Styles & Dark Theme Resets */
+        body {
+            background-color: #0d1117;
+            color: #c9d1d9;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        
+        /* Typography */
+        h1, h2, h3 { color: #ffffff; }
+        h2 { 
+            color: #b5e853; /* Hacker green */
+            border-bottom: 1px solid #30363d; 
+            padding-bottom: 10px; 
+            margin-top: 60px; 
+            font-family: 'Fira Code', monospace; 
+            display: flex; align-items: center; gap: 10px;
+        }
+        p { color: #8b949e; font-size: 1.1em; }
+        a { color: #58a6ff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        
+        /* Hero Section */
+        .hero-section { text-align: center; margin: 20px 0 30px 0; }
+        .hero-title { font-size: 3em; margin: 10px 0; font-weight: 800; color: #b5e853; letter-spacing: -1px; }
+        .hero-subtitle { font-size: 1.1em; color: #8b949e; letter-spacing: 2px; font-weight: 600; margin-bottom: 20px; }
+        
+        /* Badges */
+        .badges { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 30px; }
+        .badges img { height: 28px; border-radius: 4px; transition: transform 0.2s; }
+        .badges img:hover { transform: translateY(-2px); }
+
+        /* Animated PowerShell Terminal */
+        .hacker-terminal {
+            width: 100%; background-color: #0f110f; 
+            border: 1px solid #b5e853; border-radius: 4px; 
+            box-shadow: 0 5px 20px rgba(181, 232, 83, 0.05); overflow: hidden; text-align: left;
+            margin-bottom: 50px;
+        }
+        .hacker-header { 
+            background: #1a1c1a; padding: 8px 15px; border-bottom: 1px solid #b5e853; 
+            font-family: 'Fira Code', monospace; color: #8b949e; font-size: 13px; 
+        }
+        .hacker-body { 
+            padding: 25px; font-family: 'Fira Code', monospace; 
+            font-size: 15px; color: #b5e853; line-height: 1.7;
+        }
+        .cursor { display: inline-block; width: 10px; height: 16px; background-color: #b5e853; animation: blink 1s step-end infinite; vertical-align: middle; margin-left: 4px;}
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        .highlight-white { color: #ffffff; font-weight: 600; }
+        
+        /* ASCII Art Console */
+        .ascii-art {
+            background: #161b22; border: 1px solid #30363d; padding: 20px;
+            border-radius: 6px; overflow-x: auto; color: #79c0ff;
+            font-family: 'Fira Code', monospace; font-size: 14px; text-align: center;
+        }
+
+        /* Tech Arsenal Flexbox */
+        .tech-category { margin-bottom: 20px; }
+        .tech-category h3 { font-size: 1.1em; color: #c9d1d9; margin-bottom: 10px; }
+        .tech-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+        .tech-tag {
+            background: #21262d; border: 1px solid #30363d; padding: 5px 12px;
+            border-radius: 2em; font-size: 0.9em; font-family: 'Fira Code', monospace;
+            color: #8b949e;
+        }
+
+        /* Project Cards (CSS Grid) */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; margin-top: 20px; }
+        .card { 
+            background: #161b22; border: 1px solid #30363d; padding: 25px; border-radius: 8px; 
+            transition: all 0.3s ease; display: flex; flex-direction: column; justify-content: space-between;
+        }
+        .card:hover { border-color: #b5e853; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+        .card h3 { margin-top: 0; color: #ffffff; font-size: 1.3em; margin-bottom: 10px; }
+        .card ul { padding-left: 20px; color: #8b949e; font-size: 0.95em; margin-bottom: 20px; }
+        .card ul li { margin-bottom: 5px; }
+        .stack-list { color: #b5e853; font-family: 'Fira Code', monospace; font-size: 0.85em; }
+
+        /* Images and Charts */
+        .chart-container { text-align: center; background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 15px; margin-top: 20px; overflow: hidden; }
+        .chart-container img { max-width: 100%; border-radius: 4px; }
+        
+        /* Footer */
+        .footer { text-align: center; margin-top: 60px; padding-top: 30px; border-top: 1px solid #30363d; }
+        .footer h3 { font-family: 'Fira Code', monospace; color: #b5e853; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <h1 class="hero-title">MANIKANT SHARMA</h1>
+        <div class="hero-subtitle">AUTOMATION ENGINEER &bull; PYTHON DEVELOPER &bull; QA</div>
+        
+        <div class="badges">
+            <a href="https://github.com/DevManikant" target="_blank"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub"></a>
+            <a href="YOUR_LINKEDIN_URL" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"></a>
+            <a href="mailto:YOUR_EMAIL"><img src="https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"></a>
+        </div>
+    </div>
+
+    <!-- Animated Terminal -->
+    <div class="hacker-terminal">
+        <div class="hacker-header">Administrator: Windows PowerShell</div>
+        <div class="hacker-body">
+            <span style="color: #fff;">PS C:\Automation_Env></span> ./init_session.ps1<br><br>
+            <span id="typed-text"></span><span class="cursor"></span>
+        </div>
+    </div>
+
+    <!-- About Me -->
+    <h2>🧑‍💻 About Me</h2>
+    <p>I'm an <strong>Automation Engineer and Python Developer</strong> focused on building practical automation systems and reliable testing solutions. My experience spans browser automation, QA engineering, API testing, performance scaling, web scraping, real-time monitoring, and database validation.</p>
+    <p>I enjoy working on complex infrastructural problems where speed and reliability matter — from running multiple browser instances in parallel to building event-driven monitoring systems.</p>
+    
+    <div class="ascii-art">
+┌───────────────────────────────────────────────────────────┐
+│                                                           │
+│   BUILD          AUTOMATE          TEST          OPTIMIZE │
+│                                                           │
+│      Python  →  Playwright  →  API  →  Performance        │
+│                                                           │
+└───────────────────────────────────────────────────────────┘
+    </div>
+
+    <!-- Tech Arsenal -->
+    <h2>⚙️ Tech Arsenal</h2>
+    <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+        <div class="tech-category">
+            <h3>🐍 Languages</h3>
+            <img src="https://skillicons.dev/icons?i=python,javascript,c" alt="Languages" />
+        </div>
+        <div class="tech-category">
+            <h3>🎭 Automation & Testing</h3>
+            <img src="https://skillicons.dev/icons?i=selenium,pytest,cypress" alt="Automation" />
+            <div class="tech-tags" style="margin-top: 10px;">
+                <span class="tech-tag">Playwright</span><span class="tech-tag">BDD</span>
+            </div>
+        </div>
+        <div class="tech-category">
+            <h3>🌐 Web & Database</h3>
+            <img src="https://skillicons.dev/icons?i=react,nodejs,html,css,mongodb" alt="Web" />
+            <div class="tech-tags" style="margin-top: 10px;">
+                <span class="tech-tag">SQL</span><span class="tech-tag">REST API</span>
+            </div>
+        </div>
+        <div class="tech-category">
+            <h3>☁️ Cloud & DevOps</h3>
+            <img src="https://skillicons.dev/icons?i=aws,azure,docker,git,github" alt="DevOps" />
+        </div>
+    </div>
+
+    <!-- Featured Projects -->
+    <h2>🔥 Featured Projects</h2>
+    <div class="grid">
+        
+        <div class="card">
+            <h3>⚡ High-Performance Browser Automation</h3>
+            <p>A browser automation solution designed for time-sensitive workflows using a hybrid architecture.</p>
+            <ul>
+                <li>Parallel browser automation & concurrent instances</li>
+                <li>Configuring headless display environments (VNC/noVNC)</li>
+                <li>Process-scoped PowerShell execution policies</li>
+                <li>DOM, JavaScript, and Mutation Observer optimization</li>
+            </ul>
+            <div class="stack-list">
+                > [ Python ] [ Playwright ] [ Selenium ] [ Google Colab ]
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>🎟️ Real-Time Availability Monitor</h3>
+            <p>An event-driven monitoring system designed to track ticket availability and dispatch low-latency notifications.</p>
+            <ul>
+                <li>Real-time continuous availability polling</li>
+                <li>Secure REST API integrations</li>
+                <li>Automated Telegram Bot notifications</li>
+                <li>Serverless Cloud-based execution</li>
+            </ul>
+            <div class="stack-list">
+                > [ Python ] [ Azure Functions ] [ REST API ]
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>🧪 API & Performance Testing Framework</h3>
+            <p>Automated testing solutions for validating API reliability and measuring overall system performance under load.</p>
+            <ul>
+                <li>Comprehensive REST API automation</li>
+                <li>Strict response and payload validation</li>
+                <li>Database state verification</li>
+                <li>Load testing and performance bottleneck analysis</li>
+            </ul>
+            <div class="stack-list">
+                > [ Python ] [ Requests ] [ Locust ] [ SQL ]
+            </div>
+        </div>
+
+    </div>
+
+    <!-- GitHub Activity -->
+    <h2>📊 GitHub Activity</h2>
+    <div class="chart-container">
+        <img src="https://github-readme-activity-graph.vercel.app/graph?username=DevManikant&theme=react-dark&hide_border=true&area=true&bg_color=161b22" alt="Activity Graph"/>
+    </div>
+    <div class="chart-container">
+        <img src="https://raw.githubusercontent.com/platane/snk/output/github-contribution-grid-snake.svg" alt="Contribution Snake" />
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <h3>> AUTOMATE THE BORING. OPTIMIZE THE SLOW.</h3>
+        <p>I'm always interested in discussing Automation, Python, QA Engineering, Performance Testing, and interesting technical problems.</p>
+        <div class="badges" style="margin-top: 20px;">
+            <a href="https://github.com/DevManikant" target="_blank"><img src="https://img.shields.io/badge/GitHub-Explore%20My%20Code-181717?style=for-the-badge&logo=github" alt="Explore Code"></a>
+            <a href="YOUR_LINKEDIN_URL" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-Connect%20With%20Me-0A66C2?style=for-the-badge&logo=linkedin" alt="Connect"></a>
+        </div>
+    </div>
+
+</div>
+
+<!-- Terminal Script -->
+<script>
+    async function executeTerminalSequence() {
+        const typedText = document.getElementById('typed-text');
+        typedText.innerHTML = "[*] Bypassing execution policy...<br>[*] Initializing remote connection sequence...<br><br>";
+        
+        try {
+            const geoResponse = await fetch('https://get.geojs.io/v1/ip/geo.json');
+            const geoData = await geoResponse.json();
+            
+            const weatherResponse = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${geoData.latitude}&longitude=${geoData.longitude}&current=temperature_2m`);
+            const weatherData = await weatherResponse.json();
+            
+            let ipDisplay = geoData.ip;
+            if(ipDisplay.length > 15) ipDisplay = ipDisplay.substring(0, 15) + '...';
+            
+            let cityDisplay = geoData.city && geoData.city !== 'Unknown' ? geoData.city : 'Remote Node';
+
+            const lines = [
+                `[+] Handshake successful. Client IP: <span class="highlight-white">${ipDisplay}</span>`,
+                `[+] Node coordinates verified: <span class="highlight-white">${cityDisplay}, ${geoData.country_code || ''}</span>`,
+                `[+] Environment temp check: <span class="highlight-white">${weatherData.current.temperature_2m}°C</span>`,
+                `[+] VNC Server ready. Awaiting automation scripts...`
+            ];
+
+            await new Promise(r => setTimeout(r, 800));
+            
+            for (let i = 0; i < lines.length; i++) {
+                typedText.innerHTML += lines[i] + "<br>";
+                await new Promise(r => setTimeout(r, 600)); 
+            }
+            
+        } catch (error) {
+            typedText.innerHTML += "[-] Execution failed. Loading static fallback.<br>[+] Welcome to my portfolio.";
+        }
+    }
+
+    executeTerminalSequence();
+</script>
+
+</body>
+</html>
